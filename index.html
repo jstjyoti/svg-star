@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>SVG-star</title>
+  </head>
+  <style>
+    
+  </style>
+  <body>
+    <div id="svg-container">
+      
+    </div>
+    <script>
+      var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+      svg.setAttribute("id","Mysvg");
+      svg.setAttribute('width', 200);//function AND width,height arg
+      svg.setAttribute('height', 200);
+      document.getElementById("svg-container").appendChild(svg);
+        
+      var newpath = document.createElementNS("http://www.w3.org/2000/svg","path");//function and calculation
+      newpath.setAttribute("id", "pathId");  
+      newpath.setAttribute("d","M 100,0 L 120,50 L 170,50 L 130,90 L 150,150 L 100,120 L 50,150 L 70,90 L 20,50 L 80,50 L 100,0 z");
+      newpath.setAttribute("stroke", "purple");  
+      newpath.setAttribute("stroke-width", 3);
+      newpath.setAttribute("fill",'red');
+      document.getElementById("Mysvg").appendChild(newpath);
+      //console.log(window.innerHeight);
+      
+    </script>
+  </body>
+</html>
