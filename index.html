@@ -12,20 +12,49 @@
     </div>
     <script>
       var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-      svg.setAttribute("id","Mysvg");
-      svg.setAttribute('width', 200);//function AND width,height arg
-      svg.setAttribute('height', 200);
-      document.getElementById("svg-container").appendChild(svg);
-        
-      var newpath = document.createElementNS("http://www.w3.org/2000/svg","path");//function and calculation
-      newpath.setAttribute("id", "pathId");  
-      newpath.setAttribute("d","M 100,0 L 120,50 L 170,50 L 130,90 L 150,150 L 100,120 L 50,150 L 70,90 L 20,50 L 80,50 L 100,0 z");
-      newpath.setAttribute("stroke", "purple");  
-      newpath.setAttribute("stroke-width", 3);
-      newpath.setAttribute("fill",'red');
-      document.getElementById("Mysvg").appendChild(newpath);
-      //console.log(window.innerHeight);
+      function positions(parentWidth, parentHeight){
+      let side = Math.min(parentWidth, parentHeight),
+      str = "m" + ((side + (parentWidth - side)) / 2) + "," + (parentHeight - side) / 2,
+      ax = 0.15, 
+      bx = (1 - 2 * ax)/2, 
+      cx = 0.3,
+      dx = 0.5, 
+      ay = 0.3, by = 0.25, 
+      cy = (1 - ay - by), 
+      dy = 0.3;
+      str += " l" + (ax * side) + "," + (ay * side);
+      str += " h" + (bx * side);
+      str += " l-" + (cx * side) + "," + (by * side);
+      str += " l" + (cx * side) + "," + (cy * side);
+      str += " l-" + (dx * side) + ",-" + (dy * side);
+      str += " l-" + (dx * side) + "," + (dy * side);
+      str += " l" + (cx * side) + ",-" + (cy * side);
+      str += " l-" + (cx * side) + ",-" + (by * side);
+      str += " h" + (bx * side);
+      str += " z"; 
+      return str;
+      }
+
+    function star(parentElement, width, height, styles){
+        let svg = document.createElementNS("http://www.w3.org/2000/svg", "svg"),
+        star = document.createElementNS("http://www.w3.org/2000/svg", "path"),
+        str = '';
+        svg.setAttribute("height", height);
+        svg.setAttribute("width", width);
+        star.setAttribute("d", positions(width, height));
+        for(let a in styles){
+            str += a + ':' + styles[a] + ';';
+        }
+        star.setAttribute("style",str);
+        svg.appendChild(star);
+        parentElement.appendChild(svg);
+    }
       
+      star(document.getElementById("svg-container"), 10, 10, {
+        "fill": "blue",
+        "stroke": "black",
+        "stroke-width": "0.5"
+      });
     </script>
   </body>
 </html>
