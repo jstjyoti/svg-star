@@ -2,6 +2,7 @@
 <html>
   <head>
     <title>SVG-star</title>
+    <script src="fivestars.js"></script>
   </head>
   <style>
     
@@ -11,49 +12,14 @@
       
     </div>
     <script>
-      var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-      function positions(pWidth, pHeight){
-        let side = Math.min(pWidth, pHeight),
-        str = "m" + (pWidth/ 2) + "," + (pHeight - side) / 2,
-        ax = 0.15, 
-        bx = (1 - 2 * ax)/2, 
-        cx = 0.5, 
-        ay = 0.3, by = 0.25, 
-        cy = (1 - ay - by), 
-        dy = 0.3;
-        str += " l" + (ax * side) + "," + (ay * side);
-        str += " h" + (bx * side);
-        str += " l-" + (2*ax * side) + "," + (by * side);
-        str += " l" + (2*ax * side) + "," + (cy * side);
-        str += " l-" + (cx * side) + ",-" + (dy * side);
-        str += " l-" + (cx * side) + "," + (dy * side);
-        str += " l" + (2*ax * side) + ",-" + (cy * side);
-        str += " l-" + (2*ax * side) + ",-" + (by * side);
-        str += " h" + (bx * side);
-        str += " z"; 
-        return str;
-      }
-
-    function star(pElement, width, height, styles){
-        let svg = document.createElementNS("http://www.w3.org/2000/svg", "svg"),
-        star = document.createElementNS("http://www.w3.org/2000/svg", "path"),
-        str = '';
-        svg.setAttribute("height", height);
-        svg.setAttribute("width", width);
-        star.setAttribute("d", positions(width, height));
-        for(let a in styles){
-            str += a + ':' + styles[a] + ';';
-        }
-        star.setAttribute("style",str);
-        svg.appendChild(star);
-        pElement.appendChild(svg);
-    }
+        //only pixel or number 
+        star(document.getElementById("svg-container"),70, 70, {
+          "fill": "blue",
+          "stroke": "red",
+          "stroke-width": "1",
+          "stroke-linejoin":"miter" 
+        },"column");
       
-    star(document.getElementById("svg-container"),300 , 500, {
-      "fill": "blue",
-      "stroke": "black",
-      "stroke-width": "0.5"
-    });
     </script>
   </body>
 </html>
