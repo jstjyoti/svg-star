@@ -12,30 +12,29 @@
     </div>
     <script>
       var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-      function positions(parentWidth, parentHeight){
-      let side = Math.min(parentWidth, parentHeight),
-      str = "m" + ((side + (parentWidth - side)) / 2) + "," + (parentHeight - side) / 2,
-      ax = 0.15, 
-      bx = (1 - 2 * ax)/2, 
-      cx = 0.3,
-      dx = 0.5, 
-      ay = 0.3, by = 0.25, 
-      cy = (1 - ay - by), 
-      dy = 0.3;
-      str += " l" + (ax * side) + "," + (ay * side);
-      str += " h" + (bx * side);
-      str += " l-" + (cx * side) + "," + (by * side);
-      str += " l" + (cx * side) + "," + (cy * side);
-      str += " l-" + (dx * side) + ",-" + (dy * side);
-      str += " l-" + (dx * side) + "," + (dy * side);
-      str += " l" + (cx * side) + ",-" + (cy * side);
-      str += " l-" + (cx * side) + ",-" + (by * side);
-      str += " h" + (bx * side);
-      str += " z"; 
-      return str;
+      function positions(pWidth, pHeight){
+        let side = Math.min(pWidth, pHeight),
+        str = "m" + (pWidth/ 2) + "," + (pHeight - side) / 2,
+        ax = 0.15, 
+        bx = (1 - 2 * ax)/2, 
+        cx = 0.5, 
+        ay = 0.3, by = 0.25, 
+        cy = (1 - ay - by), 
+        dy = 0.3;
+        str += " l" + (ax * side) + "," + (ay * side);
+        str += " h" + (bx * side);
+        str += " l-" + (2*ax * side) + "," + (by * side);
+        str += " l" + (2*ax * side) + "," + (cy * side);
+        str += " l-" + (cx * side) + ",-" + (dy * side);
+        str += " l-" + (cx * side) + "," + (dy * side);
+        str += " l" + (2*ax * side) + ",-" + (cy * side);
+        str += " l-" + (2*ax * side) + ",-" + (by * side);
+        str += " h" + (bx * side);
+        str += " z"; 
+        return str;
       }
 
-    function star(parentElement, width, height, styles){
+    function star(pElement, width, height, styles){
         let svg = document.createElementNS("http://www.w3.org/2000/svg", "svg"),
         star = document.createElementNS("http://www.w3.org/2000/svg", "path"),
         str = '';
@@ -47,14 +46,14 @@
         }
         star.setAttribute("style",str);
         svg.appendChild(star);
-        parentElement.appendChild(svg);
+        pElement.appendChild(svg);
     }
       
-      star(document.getElementById("svg-container"), 10, 10, {
-        "fill": "blue",
-        "stroke": "black",
-        "stroke-width": "0.5"
-      });
+    star(document.getElementById("svg-container"),300 , 500, {
+      "fill": "blue",
+      "stroke": "black",
+      "stroke-width": "0.5"
+    });
     </script>
   </body>
 </html>
